@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../include/unique_ptr.hh"
+#include "unique_ptr.hh"
 
 int main() {
     custom_classes::unique_ptr<std::string []> my_ptr_1 = new std::string [1000];
