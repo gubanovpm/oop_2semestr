@@ -11,7 +11,9 @@ find_package(SFML 2.5 COMPONENTS
 set (EXEC_FILE "skill_tree.exe")
 
 set (SOURCES
-    sources/skilltree.cpp
+    sources/Node.cc
+    sources/main.cc
+    sources/HitNode.cc
 )
 
 add_executable(${EXEC_FILE} ${SOURCES})
@@ -23,9 +25,7 @@ target_link_libraries(${EXEC_FILE}
                         sfml-system
                      )
 
-set (COMPILER_SETTINGS
-    -std=c++2a
-    -O2
-)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 target_compile_options(${EXEC_FILE} PRIVATE ${COMPILER_SETTINGS})

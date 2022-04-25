@@ -1,12 +1,18 @@
-#pragma once
+#ifndef __SFLINE_HH__
+#define __SFLINE_HH__
+
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
 #include <cmath>
 
 class sfLine {
 public:
   sfLine(const sf::Vector2f &point1, const sf::Vector2f &point2,
-         sf::Color color, float thickness)
-      : color(color), thickness(thickness) {
+         sf::Color color, float thickness) : 
+         color(color), thickness(thickness) {
     sf::Vector2f direction = point2 - point1;
     sf::Vector2f unitDirection =
         direction /
@@ -33,3 +39,5 @@ private:
   float thickness;
   sf::Color color;
 };
+
+#endif
