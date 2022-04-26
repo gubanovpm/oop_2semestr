@@ -19,7 +19,7 @@ public:
   bool collisionTest(sf::Vector2f mouseCoords) const override;
   void draw(sf::RenderWindow &window) const override;
 
-  virtual sf::String getIconPath() = 0;
+  virtual sf::String getIconPath() const = 0;
 
   void loadTexture();
   sf::Color getCurrentColor() const;
@@ -27,21 +27,48 @@ public:
   inline static const size_t kCharacterSize = 16;
   inline static const size_t width = 64;
   inline static const size_t height = 80;
-//   inline static const size_t radius = 24;
   inline static const size_t subtitle_offset = 20;
 };
 
 class SwordRectSkillNode : public AccumulateNode {
 public:
-  inline static const size_t mxlvl = 6;
+  inline static const size_t mxlvl = 4;
 
   SwordRectSkillNode(sf::Vector2f position, const sf::Font &font)
       : AccumulateNode{position, font, mxlvl} {
     loadTexture();
   }
 
-  sf::String getIconPath() override {
+  sf::String getIconPath() const override {
     return sf::String{"../sources/icons/icon_rect_sword.png"};
+  }
+};
+
+class FreezeRectSkillNode : public AccumulateNode {
+public:
+  inline static const size_t mxlvl = 7;
+
+  FreezeRectSkillNode(sf::Vector2f position, const sf::Font &font)
+      : AccumulateNode{position, font, mxlvl} {
+    loadTexture();
+  }
+
+  sf::String getIconPath() const override {
+    return sf::String{"../sources/icons/icon_rect_freeze.png"};
+  }
+};
+
+class ChainRectSkillNode : public AccumulateNode {
+public:
+  inline static const size_t mxlvl = 6;
+
+  ChainRectSkillNode(sf::Vector2f position, const sf::Font &font)
+      : AccumulateNode{position, font, mxlvl} {
+    loadTexture();
+  }
+
+  sf::String getIconPath() const override {
+    return sf::String{"../sources/icons/icon_rect_chain.png"};
   }
 };
 

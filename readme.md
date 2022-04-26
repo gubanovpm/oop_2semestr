@@ -5,12 +5,11 @@
 ## Homework assignments:
 ```
 1) My unique_ptr: at ./UniquePtr/
-
+2) My Skill Tree: at ./SkillTree/
 ```
 
 ## To run Hometasks files have been created with CMake, so it will be enough to run:
 ```
 mkdir build && cd build
-cmake ..
-make
+cmake .. && cmake --build .
 ```

@@ -4,13 +4,15 @@ AccumulateNode::AccumulateNode(sf::Vector2f &position, const sf::Font &font,
                                size_t max_level)
     : Node(position) {
   std::string subtitle = std::to_string(0) + "/" + std::to_string(max_level);
-  std::string maxsize  = std::to_string(max_level) + "/" + std::to_string(max_level); 
+  std::string maxsize =
+      std::to_string(max_level) + "/" + std::to_string(max_level);
 
   subTitle.setFont(font);
   subTitle.setCharacterSize(kCharacterSize);
   subTitle.setFillColor(sBlockedColor);
   subTitle.setString(subtitle);
-  subTitle.setOrigin({(float)maxsize.length() / 2, (float)maxsize.length() / 2});
+  subTitle.setOrigin(
+      {(float)maxsize.length() / 2, (float)maxsize.length() / 2});
   subTitle.setPosition({position.x, position.y + subtitle_offset});
 
   currentLevel = 0;
@@ -96,7 +98,7 @@ void AccumulateNode::draw(sf::RenderWindow &window) const {
   }
 
   static sf::RectangleShape shape({width, height});
-  shape.setOrigin({width/2, height/2});
+  shape.setOrigin({width / 2, height / 2});
   shape.setFillColor(getCurrentColor());
   shape.setPosition(mPosition);
   window.draw(shape);
@@ -108,6 +110,10 @@ void AccumulateNode::draw(sf::RenderWindow &window) const {
 std::shared_ptr<Node> anotherTree(const sf::Font &font) {
   std::shared_ptr<Node> root{new SwordRectSkillNode({400, 500}, font)};
   root->addChild(
-      std::shared_ptr<Node>{new SwordRectSkillNode({100, 200}, font)});
+      std::shared_ptr<Node>{new SwordRectSkillNode({200, 400}, font)});
+  root->addChild(
+      std::shared_ptr<Node>{new FreezeRectSkillNode({400, 400}, font)});
+  root->addChild(
+      std::shared_ptr<Node>{new ChainRectSkillNode({600, 400}, font)});
   return root;
 }
