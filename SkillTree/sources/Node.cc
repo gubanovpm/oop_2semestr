@@ -1,8 +1,5 @@
 #include "Node.hh"
 
-using std::cout;
-using std::endl;
-
 Node::Node(sf::Vector2f &position) : mPosition{position} {}
 
 void Node::addChild(const std::shared_ptr<Node> &child) {
@@ -19,7 +16,20 @@ void Node::block() {
     child->block();
 }
 
-void Node::onMousePressed(sf::Vector2f mouseCoords) {
+void Node::onMousePressed(sf::Vector2f mouseCoords, Node::MouseState state) {
+  switch (state) {
+    case Node::MouseState::LeftButton: 
+      leftMouseButtonPressed(mouseCoords); 
+      break;
+    case Node::MouseState::RightButton:
+      rightMouseButtonPressed(mouseCoords);
+      break;
+    default:
+      break;
+  }
+}
+
+void Node::leftMouseButtonPressed(sf::Vector2f mouseCoords) {
   if (mState == State::Blocked)
     return;
 
@@ -38,6 +48,10 @@ void Node::onMousePressed(sf::Vector2f mouseCoords) {
   }
 
   for (const auto &child : mChildren) {
-    child->onMousePressed(mouseCoords);
+    child->onMousePressed(mouseCoords, Node::MouseState::LeftButton);
   }
+}
+
+void Node::rightMouseButtonPressed(sf::Vector2f mouseCoords) {
+  leftMouseButtonPressed(mouseCoords);
 }

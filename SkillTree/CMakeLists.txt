@@ -14,6 +14,7 @@ set (SOURCES
     sources/Node.cc
     sources/main.cc
     sources/HitNode.cc
+    sources/AccumulateNode.cc
 )
 
 add_executable(${EXEC_FILE} ${SOURCES})

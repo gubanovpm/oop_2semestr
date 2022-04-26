@@ -1,5 +1,5 @@
-#ifndef __HITNODE_HH__
-#define __HITNODE_HH__
+#ifndef __HitNode_hh__
+#define __HitNode_hh__
 
 /* Icons from Ken111: https://www.flaticon.com/ru/packs/game-skill?k=1650700359068 */
 
@@ -13,7 +13,7 @@ public:
   void loadTexture() ;
   void draw(sf::RenderWindow &window) const ;
 
-  bool collisionTest(sf::Vector2f mouseCoords) override ;
+  bool collisionTest(sf::Vector2f mouseCoords) const override ;
 
   virtual sf::String getIconPath() = 0;
 private:
@@ -140,6 +140,17 @@ public:
   sf::String getIconPath() override {
     return sf::String{"../sources/icons/icon_earthquake.png"};
   }
+};
+
+class FireballSkillNode : public HitNode {
+public:
+    FireballSkillNode(sf::Vector2f position) : HitNode(position) {
+        loadTexture();
+    }
+
+    sf::String getIconPath() override {
+        return sf::String{"../sources/icons/icon_fireball.png"};
+    }
 };
 
 #endif

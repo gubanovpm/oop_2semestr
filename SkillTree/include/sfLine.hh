@@ -1,5 +1,5 @@
-#ifndef __SFLINE_HH__
-#define __SFLINE_HH__
+#ifndef __sfLine_hh__
+#define __sfLine_hh__
 
 #include <SFML/Graphics.hpp>
 #include <iostream>

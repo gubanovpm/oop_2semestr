@@ -1,14 +1,11 @@
 #include "HitNode.hh"
 
-using std::cout;
-using std::endl;
-
 HitNode::HitNode(sf::Vector2f position) : Node{position} {}
 
 void HitNode::loadTexture() {
   sf::String texturePath = getIconPath();
   if (!mTexture.loadFromFile(texturePath)) {
-    cout << "Error! Can't load file " << texturePath.toAnsiString() << endl;
+    std::cout << "Error! Can't load file " << texturePath.toAnsiString() << std::endl;
     std::exit(1);
   }
   mSprite.setTexture(mTexture);
@@ -40,7 +37,7 @@ void HitNode::draw(sf::RenderWindow &window) const {
   window.draw(mSprite);
 }
 
-bool HitNode::collisionTest(sf::Vector2f mouseCoords) {
+bool HitNode::collisionTest(sf::Vector2f mouseCoords) const {
   sf::Vector2f d = mPosition - mouseCoords;
   return d.x * d.x + d.y * d.y < mRadius * mRadius;
 }
@@ -65,6 +62,9 @@ std::shared_ptr<Node> createSkillTree() {
   e->addChild(std::shared_ptr<Node>{new WindSkillNode({500, 100})});
   e->addChild(std::shared_ptr<Node>{new SwordSkillNode({600, 100})});
   c->addChild(std::shared_ptr<Node>{new EyeSkillNode({700, 200})});
+  std::shared_ptr<Node> f{new FireballSkillNode({100, 700})};
+  a->addChild(f);
+
 
   return root;
 }
