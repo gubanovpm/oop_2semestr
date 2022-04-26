@@ -1,21 +1,23 @@
 #ifndef __HitNode_hh__
 #define __HitNode_hh__
 
-/* Icons from Ken111: https://www.flaticon.com/ru/packs/game-skill?k=1650700359068 */
+/* Icons from Ken111:
+ * https://www.flaticon.com/ru/packs/game-skill?k=1650700359068 */
 
 #include "Node.hh"
 
 class HitNode : public Node {
 public:
   HitNode(sf::Vector2f position);
-  sf::Color getCurrentColor() const ;
-  
-  void loadTexture() ;
-  void draw(sf::RenderWindow &window) const ;
+  sf::Color getCurrentColor() const;
 
-  bool collisionTest(sf::Vector2f mouseCoords) const override ;
+  void loadTexture();
+  void draw(sf::RenderWindow &window) const;
+
+  bool collisionTest(sf::Vector2f mouseCoords) const override;
 
   virtual sf::String getIconPath() = 0;
+
 private:
   sf::Texture mTexture;
   sf::Sprite mSprite;
@@ -144,13 +146,13 @@ public:
 
 class FireballSkillNode : public HitNode {
 public:
-    FireballSkillNode(sf::Vector2f position) : HitNode(position) {
-        loadTexture();
-    }
+  FireballSkillNode(sf::Vector2f position) : HitNode(position) {
+    loadTexture();
+  }
 
-    sf::String getIconPath() override {
-        return sf::String{"../sources/icons/icon_fireball.png"};
-    }
+  sf::String getIconPath() override {
+    return sf::String{"../sources/icons/icon_fireball.png"};
+  }
 };
 
 #endif

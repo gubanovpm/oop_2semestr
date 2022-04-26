@@ -5,7 +5,8 @@ HitNode::HitNode(sf::Vector2f position) : Node{position} {}
 void HitNode::loadTexture() {
   sf::String texturePath = getIconPath();
   if (!mTexture.loadFromFile(texturePath)) {
-    std::cout << "Error! Can't load file " << texturePath.toAnsiString() << std::endl;
+    std::cout << "Error! Can't load file " << texturePath.toAnsiString()
+              << std::endl;
     std::exit(1);
   }
   mSprite.setTexture(mTexture);
@@ -64,7 +65,6 @@ std::shared_ptr<Node> createSkillTree() {
   c->addChild(std::shared_ptr<Node>{new EyeSkillNode({700, 200})});
   std::shared_ptr<Node> f{new FireballSkillNode({100, 700})};
   a->addChild(f);
-
 
   return root;
 }

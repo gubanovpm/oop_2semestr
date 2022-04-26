@@ -18,14 +18,14 @@ void Node::block() {
 
 void Node::onMousePressed(sf::Vector2f mouseCoords, Node::MouseState state) {
   switch (state) {
-    case Node::MouseState::LeftButton: 
-      leftMouseButtonPressed(mouseCoords); 
-      break;
-    case Node::MouseState::RightButton:
-      rightMouseButtonPressed(mouseCoords);
-      break;
-    default:
-      break;
+  case Node::MouseState::LeftButton:
+    leftMouseButtonPressed(mouseCoords);
+    break;
+  case Node::MouseState::RightButton:
+    rightMouseButtonPressed(mouseCoords);
+    break;
+  default:
+    break;
   }
 }
 

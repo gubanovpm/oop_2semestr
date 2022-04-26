@@ -1,5 +1,5 @@
-#include "HitNode.hh"
 #include "AccumulateNode.hh"
+#include "HitNode.hh"
 
 int main() {
   sf::ContextSettings settings;
@@ -10,7 +10,7 @@ int main() {
 
   sf::Font font;
   if (!font.loadFromFile("../sources/consolas.ttf")) {
-      std::cout << "Can't load font" << std::endl;
+    std::cout << "Can't load font" << std::endl;
   }
 
   std::shared_ptr<Node> root = anotherTree(font);
