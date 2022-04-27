@@ -21,12 +21,14 @@ public:
   virtual void rightMouseButtonPressed(sf::Vector2f mouseCoords);
   virtual bool collisionTest(sf::Vector2f mouseCoords) const = 0;
   virtual void draw(sf::RenderWindow &window) const = 0;
+  virtual size_t getNodeStatus() const = 0;
+
+  std::vector<std::shared_ptr<Node>> mChildren{};
 
 protected:
   sf::Vector2f mPosition{0, 0};
   State mState = State::Blocked;
 
-  std::vector<std::shared_ptr<Node>> mChildren{};
 
   inline static sf::Color sBlockedColor{40, 40, 40};
   inline static sf::Color sUnlockedColor{80, 80, 40};

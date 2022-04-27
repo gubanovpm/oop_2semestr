@@ -15,6 +15,7 @@ set (SOURCES
     sources/main.cc
     sources/HitNode.cc
     sources/AccumulateNode.cc
+    sources/AbstructSkillTree.cc
 )
 
 add_executable(${EXEC_FILE} ${SOURCES})

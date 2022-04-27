@@ -48,10 +48,23 @@ void Node::leftMouseButtonPressed(sf::Vector2f mouseCoords) {
   }
 
   for (const auto &child : mChildren) {
-    child->onMousePressed(mouseCoords, Node::MouseState::LeftButton);
+    child->leftMouseButtonPressed(mouseCoords);
   }
 }
 
 void Node::rightMouseButtonPressed(sf::Vector2f mouseCoords) {
-  leftMouseButtonPressed(mouseCoords);
+  if (mState == State::Blocked)
+    return;
+
+  if (collisionTest(mouseCoords)) {
+    if (mState == State::Activated) {
+      mState = State::Unblocked;
+      for (const auto &child : mChildren)
+        child->block();
+    }
+  }
+
+  for (const auto &child : mChildren) {
+    child->rightMouseButtonPressed(mouseCoords);
+  }
 }

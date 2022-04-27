@@ -15,6 +15,7 @@ public:
   void draw(sf::RenderWindow &window) const;
 
   bool collisionTest(sf::Vector2f mouseCoords) const override;
+  size_t getNodeStatus() const override;
 
   virtual sf::String getIconPath() = 0;
 
@@ -33,7 +34,7 @@ public:
   BombSkillNode(sf::Vector2f position) : HitNode{position} { loadTexture(); }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_bomb.png"};
+    return sf::String{"../icons/icon_bomb.png"};
   }
 };
 
@@ -42,7 +43,7 @@ public:
   SpikesSkillNode(sf::Vector2f position) : HitNode{position} { loadTexture(); }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_spikes.png"};
+    return sf::String{"../icons/icon_spikes.png"};
   }
 };
 
@@ -53,7 +54,7 @@ public:
   }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_lightning.png"};
+    return sf::String{"../icons/icon_lightning.png"};
   }
 };
 
@@ -62,7 +63,7 @@ public:
   EyeSkillNode(sf::Vector2f position) : HitNode{position} { loadTexture(); }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_eye.png"};
+    return sf::String{"../icons/icon_eye.png"};
   }
 };
 
@@ -71,7 +72,7 @@ public:
   ClawsSkillNode(sf::Vector2f position) : HitNode{position} { loadTexture(); }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_claws.png"};
+    return sf::String{"../icons/icon_claws.png"};
   }
 };
 
@@ -80,7 +81,7 @@ public:
   ShieldSkillNode(sf::Vector2f position) : HitNode{position} { loadTexture(); }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_shield.png"};
+    return sf::String{"../icons/icon_shield.png"};
   }
 };
 
@@ -89,7 +90,7 @@ public:
   SwordSkillNode(sf::Vector2f position) : HitNode{position} { loadTexture(); }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_sword.png"};
+    return sf::String{"../icons/icon_sword.png"};
   }
 };
 
@@ -100,7 +101,7 @@ public:
   }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_shuriken.png"};
+    return sf::String{"../icons/icon_shuriken.png"};
   }
 };
 
@@ -109,7 +110,7 @@ public:
   WindSkillNode(sf::Vector2f position) : HitNode{position} { loadTexture(); }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_shuriken.png"};
+    return sf::String{"../icons/icon_shuriken.png"};
   }
 };
 
@@ -120,7 +121,7 @@ public:
   }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_meteorite.png"};
+    return sf::String{"../icons/icon_meteorite.png"};
   }
 };
 
@@ -129,7 +130,7 @@ public:
   HandSkillNode(sf::Vector2f position) : HitNode{position} { loadTexture(); }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_hand.png"};
+    return sf::String{"../icons/icon_hand.png"};
   }
 };
 
@@ -140,7 +141,7 @@ public:
   }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_earthquake.png"};
+    return sf::String{"../icons/icon_earthquake.png"};
   }
 };
 
@@ -151,7 +152,7 @@ public:
   }
 
   sf::String getIconPath() override {
-    return sf::String{"../sources/icons/icon_fireball.png"};
+    return sf::String{"../icons/icon_fireball.png"};
   }
 };
 

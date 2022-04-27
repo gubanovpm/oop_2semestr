@@ -49,6 +49,7 @@ void AccumulateNode::rightMouseButtonPressed(sf::Vector2f mouseCoords) {
     if (mState == State::Activated) {
       if (currentLevel == 1) {
         mState = State::Unblocked;
+        currentLevel = 0;
         for (const auto &child : mChildren)
           child->block();
       } else
@@ -105,6 +106,14 @@ void AccumulateNode::draw(sf::RenderWindow &window) const {
 
   window.draw(mSprite);
   window.draw(subTitle);
+}
+
+size_t AccumulateNode::getNodeStatus() const {
+  size_t sum = 0;
+  for (auto &child: mChildren) {
+    sum += child->getNodeStatus();
+  }
+  return sum + currentLevel;
 }
 
 std::shared_ptr<Node> anotherTree(const sf::Font &font) {

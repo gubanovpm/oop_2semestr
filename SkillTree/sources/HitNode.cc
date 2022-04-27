@@ -43,6 +43,14 @@ bool HitNode::collisionTest(sf::Vector2f mouseCoords) const {
   return d.x * d.x + d.y * d.y < mRadius * mRadius;
 }
 
+size_t HitNode::getNodeStatus() const {
+  size_t sum = 0;
+  for (auto &child: mChildren) {
+    sum += child->getNodeStatus();
+  }
+  return (mState == State::Activated) ? sum + 1 : sum ;
+}
+
 std::shared_ptr<Node> createSkillTree() {
   std::shared_ptr<Node> root{new LightningSkillNode({400, 500})};
   std::shared_ptr<Node> a{new ShurikenSkillNode({200, 400})};

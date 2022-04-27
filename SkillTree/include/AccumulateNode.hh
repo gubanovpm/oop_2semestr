@@ -18,6 +18,7 @@ public:
   void rightMouseButtonPressed(sf::Vector2f mouseCoords) override;
   bool collisionTest(sf::Vector2f mouseCoords) const override;
   void draw(sf::RenderWindow &window) const override;
+  size_t getNodeStatus() const override;
 
   virtual sf::String getIconPath() const = 0;
 
@@ -40,7 +41,7 @@ public:
   }
 
   sf::String getIconPath() const override {
-    return sf::String{"../sources/icons/icon_rect_sword.png"};
+    return sf::String{"../icons/icon_rect_sword.png"};
   }
 };
 
@@ -54,7 +55,7 @@ public:
   }
 
   sf::String getIconPath() const override {
-    return sf::String{"../sources/icons/icon_rect_freeze.png"};
+    return sf::String{"../icons/icon_rect_freeze.png"};
   }
 };
 
@@ -68,7 +69,7 @@ public:
   }
 
   sf::String getIconPath() const override {
-    return sf::String{"../sources/icons/icon_rect_chain.png"};
+    return sf::String{"../icons/icon_rect_chain.png"};
   }
 };
 
