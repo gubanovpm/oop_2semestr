@@ -110,7 +110,7 @@ void AccumulateNode::draw(sf::RenderWindow &window) const {
 
 size_t AccumulateNode::getNodeStatus() const {
   size_t sum = 0;
-  for (auto &child: mChildren) {
+  for (auto &child : mChildren) {
     sum += child->getNodeStatus();
   }
   return sum + currentLevel;

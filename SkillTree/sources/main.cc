@@ -10,11 +10,12 @@ int main() {
   sf::Font font;
   if (!font.loadFromFile("../consolas.ttf")) {
     std::cout << "Can't load font" << std::endl;
+    return 0;
   }
 
-  MageSkillTree mage_tree {{200, 500}, font};
-  WarriorSkillTree war_tree {{400, 500}, font};
-  RogueSkillTree rog_tree {{600, 500}, font};
+  MageSkillTree mage_tree{{200, 500}, font};
+  WarriorSkillTree war_tree{{400, 500}, font};
+  RogueSkillTree rog_tree{{600, 500}, font};
 
   while (window.isOpen()) {
     sf::Event event;

@@ -29,10 +29,9 @@ protected:
   sf::Vector2f mPosition{0, 0};
   State mState = State::Blocked;
 
-
-  inline static sf::Color sBlockedColor{40, 40, 40};
-  inline static sf::Color sUnlockedColor{80, 80, 40};
-  inline static sf::Color sActivatedColor{160, 160, 40};
+  inline static const sf::Color sBlockedColor{40, 40, 40};
+  inline static const sf::Color sUnlockedColor{80, 80, 40};
+  inline static const sf::Color sActivatedColor{160, 160, 40};
 };
 
 #endif

@@ -45,10 +45,10 @@ bool HitNode::collisionTest(sf::Vector2f mouseCoords) const {
 
 size_t HitNode::getNodeStatus() const {
   size_t sum = 0;
-  for (auto &child: mChildren) {
+  for (auto &child : mChildren) {
     sum += child->getNodeStatus();
   }
-  return (mState == State::Activated) ? sum + 1 : sum ;
+  return (mState == State::Activated) ? sum + 1 : sum;
 }
 
 std::shared_ptr<Node> createSkillTree() {

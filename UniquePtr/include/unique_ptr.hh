@@ -1,5 +1,6 @@
 #ifndef __UNIQUE_PTR_HH__
 #define __UNIQUE_PTR_HH__
+
 #include <iostream>
 
 namespace custom_classes {
@@ -32,9 +33,7 @@ public:
             other.ptr_ = nullptr;
         }
     unique_ptr &operator=(unique_ptr &&other) noexcept {
-        del_(ptr_);
-        ptr_ = other.ptr_;
-        other.ptr_ = nullptr;
+        std::swap(ptr_, other.ptr_);
         return *this;
     }
     ~unique_ptr() { del_(ptr_); }
@@ -59,9 +58,7 @@ public:
             other.ptr_ = nullptr;
         }
     unique_ptr &operator=(unique_ptr &&other) noexcept {
-        del_(ptr_);
-        ptr_ = other.ptr_;
-        other.ptr_ = nullptr;
+        std::swap(ptr_, other.ptr_);
         return *this;
     }
     ~unique_ptr() { del_(ptr_); }

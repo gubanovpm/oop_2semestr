@@ -2,6 +2,10 @@
 
 #include "unique_ptr.hh"
 
+struct MYDEL {
+
+};
+
 int main() {
     custom_classes::unique_ptr<std::string []> my_ptr_1 = new std::string [1000];
     for (size_t i = 0; i < 1000; ++i) my_ptr_1[i] = "a" ;
@@ -23,7 +27,6 @@ int main() {
         my_ptr_3 = std::move(my_ptr_4);
     #endif
     std::cout << *my_ptr_2 << " and " << *my_ptr_3 << std::endl;
-
 
     return 0;
 }
