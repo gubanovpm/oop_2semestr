@@ -1,3 +1,0 @@
-/home/sh0d4n/Desktop/oop_2semestr/ThirdTask/build/CMakeFiles/player_movement.dir
-/home/sh0d4n/Desktop/oop_2semestr/ThirdTask/build/CMakeFiles/edit_cache.dir
-/home/sh0d4n/Desktop/oop_2semestr/ThirdTask/build/CMakeFiles/rebuild_cache.dir
