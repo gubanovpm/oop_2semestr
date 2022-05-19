@@ -23,12 +23,14 @@ public:
 
   ~Player();
 
+  // friends? really? ok
   friend class PlayerState;
   friend class Idle;
   friend class Running;
   friend class Falling;
   friend class Sliding;
   friend class Hooked;
+  friend class Sitting;
 
 private:
   sf::Vector2f mPosition{0, 0};

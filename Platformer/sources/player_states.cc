@@ -62,6 +62,10 @@ void Idle::handleEvents(Player *player, const sf::Event &event) {
       player->setState(new Running(player));
     }
 
+    if (event.key.code == sf::Keyboard::LShift) {
+      player->setState(new Sitting(player));
+    }
+
     else if (event.key.code == sf::Keyboard::Space) {
       jump(player, kJumpingVelocity);
     }
@@ -264,3 +268,62 @@ void Hooked::startFalling(Player *player) {
 }
 
 void Hooked::hitGround(Player *player) { player->setState(new Idle(player)); }
+
+Sitting::Sitting(Player *player) {
+  player->mVelocity = {0, 0};
+  mAnimation = Animation();
+  mAnimation.setAnimationSpeed(6);
+  mAnimation.addTextureRect({214, 6, 21, 30});
+  mAnimation.addTextureRect({264, 6, 21, 30});
+  mAnimation.addTextureRect({314, 6, 21, 30});
+  mAnimation.addTextureRect({14, 43, 21, 30});
+
+  player->mCollisionRect = sf::FloatRect(-40, -60, 80, 120);
+
+  std::cout << "Creating Sitting state" << std::endl;
+}
+
+void Sitting::update(Player *player, float dt) {
+  mAnimation.update(dt);
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ||
+      sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+    player->setState(new Running(player));
+  }
+}
+
+void Sitting::handleEvents(Player *player, const sf::Event &event) {
+  if (event.type == sf::Event::KeyPressed) {
+    if (event.key.code == sf::Keyboard::Space) {
+      jump(player, kJumpingVelocity);
+      return;
+    }
+  }
+  if (event.type == sf::Event::KeyReleased) {
+    if (event.key.code == sf::Keyboard::Left &&
+        !sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+      player->setState(new Idle(player));
+      player->mVelocity.x = 0;
+    }
+
+    if (event.key.code == sf::Keyboard::Right &&
+        !sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+      player->setState(new Idle(player));
+      player->mVelocity.x = 0;
+    }
+
+    if (event.key.code == sf::Keyboard::LShift) {
+      player->setState(new Idle(player));
+      player->mVelocity = {0, 0};
+    }
+  }
+}
+
+void Sitting::hook(Player *player) {}
+
+void Sitting::attacked(Player *player) {}
+
+void Sitting::startFalling(Player *player) {
+  player->setState(new Falling(player));
+}
+
+void Sitting::hitGround(Player *player) {}
