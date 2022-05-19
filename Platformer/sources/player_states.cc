@@ -1,12 +1,11 @@
-#include "player_states.hpp"
-#include "animation.hpp"
-#include "player.hpp"
+#include "player_states.hh"
+#include "animation.hh"
+#include "player.hh"
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <cmath>
 #include <iostream>
-
-using std::cout, std::endl;
 
 PlayerState::PlayerState() {}
 
@@ -22,9 +21,9 @@ void PlayerState::setSprite(sf::Sprite &sprite, bool isFacedRight) {
   }
 }
 
-void PlayerState::jump(Player *player) {
+void PlayerState::jump(Player *player, float jumpingVelocity) {
   player->mPosition.y -= 1;
-  player->mVelocity.y = -kJumpingVelocity;
+  player->mVelocity.y = - jumpingVelocity;
   startFalling(player);
 }
 
@@ -41,7 +40,7 @@ Idle::Idle(Player *player) {
 
   player->mCollisionRect = sf::FloatRect(-40, -60, 80, 120);
 
-  cout << "Creating Idle state" << endl;
+  std::cout << "Creating Idle state" << std::endl;
 }
 
 void Idle::attacked(Player *player) {}
@@ -64,7 +63,7 @@ void Idle::handleEvents(Player *player, const sf::Event &event) {
     }
 
     else if (event.key.code == sf::Keyboard::Space) {
-      jump(player);
+      jump(player, kJumpingVelocity);
     }
   }
 }
@@ -88,7 +87,7 @@ Running::Running(Player *player) : PlayerState() {
 
   player->mCollisionRect = sf::FloatRect(-40, -60, 80, 120);
 
-  cout << "Creating Running state" << endl;
+  std::cout << "Creating Running state" << std::endl;
 }
 
 void Running::hook(Player *player) {}
@@ -110,7 +109,7 @@ void Running::update(Player *player, float dt) {
 void Running::handleEvents(Player *player, const sf::Event &event) {
   if (event.type == sf::Event::KeyPressed) {
     if (event.key.code == sf::Keyboard::Space) {
-      jump(player);
+      jump(player, kJumpingVelocity);
       return;
     }
 
@@ -153,7 +152,7 @@ Sliding::Sliding(Player *player) : PlayerState() {
   player->mCollisionRect = sf::FloatRect(-80, -20, 160, 80);
   mCurrentTime = kSlidingTime;
 
-  cout << "Creating Sliding state" << endl;
+  std::cout << "Creating Sliding state" << std::endl;
 }
 
 void Sliding::hook(Player *player) {}
@@ -176,7 +175,7 @@ void Sliding::handleEvents(Player *player, const sf::Event &event) {
       player->setState(new Running(player));
 
     if (event.key.code == sf::Keyboard::Space && player->mIsColliding) {
-      jump(player);
+      jump(player, kJumpingVelocity);
       player->setState(new Falling(player));
     }
   }
@@ -193,7 +192,7 @@ Falling::Falling(Player *player) : PlayerState() {
 
   player->mCollisionRect = sf::FloatRect(-40, -60, 80, 120);
 
-  cout << "Creating Falling state" << endl;
+  std::cout << "Creating Falling state" << std::endl;
 }
 
 void Falling::hook(Player *player) { player->setState(new Hooked(player)); }
@@ -213,7 +212,14 @@ void Falling::update(Player *player, float dt) {
   }
 }
 
-void Falling::handleEvents(Player *player, const sf::Event &event) {}
+void Falling::handleEvents(Player *player, const sf::Event &event) {
+  if (event.type == sf::Event::KeyPressed) {
+    if (jumpCount == 0 && event.key.code == sf::Keyboard::Space) {
+      jump(player, kSubJumpingVelocity);
+      jumpCount = 1;
+    }
+  }
+}
 
 void Falling::startFalling(Player *player) {}
 
@@ -229,7 +235,7 @@ Hooked::Hooked(Player *player) : PlayerState() {
 
   player->mCollisionRect = sf::FloatRect(-40, -60, 80, 120);
 
-  cout << "Creating Hooked state" << endl;
+  std::cout << "Creating Hooked state" << std::endl;
 }
 
 void Hooked::hook(Player *player) {}
@@ -244,7 +250,7 @@ void Hooked::update(Player *player, float dt) {
 void Hooked::handleEvents(Player *player, const sf::Event &event) {
   if (event.type == sf::Event::KeyPressed) {
     if (event.key.code == sf::Keyboard::Space)
-      jump(player);
+      jump(player, kJumpingVelocity);
 
     else if (event.key.code == sf::Keyboard::Down) {
       player->mVelocity.x = player->mIsFacedRight ? -100 : 100;

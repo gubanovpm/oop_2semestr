@@ -1,6 +1,8 @@
-#pragma once
+#ifndef __player_hh__
+#define __player_hh__
 
-#include "player_states.hpp"
+#include "player_states.hh"
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
@@ -43,3 +45,5 @@ private:
 
   void setState(PlayerState *pNewState);
 };
+
+#endif

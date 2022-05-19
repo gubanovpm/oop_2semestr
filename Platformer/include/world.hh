@@ -1,7 +1,9 @@
-#pragma once
+#ifndef __world_hh__
+#define __world_hh__
 
-#include "player.hpp"
-#include "player_states.hpp"
+#include "player.hh"
+#include "player_states.hh"
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <cmath>
@@ -69,3 +71,5 @@ private:
   sf::View mView{sf::FloatRect(0, 0, 1200, 900)};
   float mTime{0};
 };
+
+#endif

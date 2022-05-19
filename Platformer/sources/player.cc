@@ -1,13 +1,14 @@
-#include "player.hpp"
-#include "player_states.hpp"
+#include "player.hh"
+#include "player_states.hh"
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <cmath>
 #include <iostream>
 
 Player::Player(sf::Vector2f position) : mPosition{position} {
-  if (!mTexture.loadFromFile("../img/hero.png")) {
-    std::cerr << "Can't load image ../img/hero.png for Player class"
+  if (!mTexture.loadFromFile("../images/hero.png")) {
+    std::cerr << "Can't load image ../images/hero.png for Player class"
               << std::endl;
     std::exit(1);
   }

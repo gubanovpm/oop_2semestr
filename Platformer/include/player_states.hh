@@ -1,7 +1,9 @@
-#pragma once
+#ifndef __player_states_hh__
+#define __player_states_hh__
 
-#include "animation.hpp"
-#include "player.hpp"
+#include "animation.hh"
+#include "player.hh"
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
@@ -21,11 +23,12 @@ public:
   virtual void hitGround(Player *player) = 0;
   virtual ~PlayerState();
 
-  void jump(Player *player);
+  void jump(Player *player, float jumpingVelocity);
 
 protected:
   Animation mAnimation;
   static constexpr float kJumpingVelocity = 1500;
+  static constexpr float kSubJumpingVelocity = 1000;
 };
 
 class Idle : public PlayerState {
@@ -85,6 +88,7 @@ public:
   void hitGround(Player *player);
 
 private:
+  unsigned jumpCount = 0;
   static constexpr float kHorizontalVelocity = 800;
 };
 
@@ -100,3 +104,5 @@ public:
   void startFalling(Player *player);
   void hitGround(Player *player);
 };
+
+#endif

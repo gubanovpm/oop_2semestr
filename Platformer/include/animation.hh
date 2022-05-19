@@ -1,7 +1,8 @@
-#pragma once
+#ifndef __animation_hh__
+#define __animation_hh__
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
-using std::cout, std::endl;
 
 class Animation {
 public:
@@ -47,3 +48,5 @@ private:
   float mTime{0};
   AnimationType mType{AnimationType::OneIteration};
 };
+
+#endif
