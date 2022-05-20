@@ -114,8 +114,42 @@ public:
   void attacked(Player *player);
   void startFalling(Player *player);
   void hitGround(Player *player);
+};
+// for future
+class FirstAttack final : public PlayerState {
+public:
+  FirstAttack(Player *player);
+  void update(Player *player, float dt);
+  void handleEvents(Player *player, const sf::Event &event);
+  void hook(Player *player);
+  void attacked(Player *player);
+  void startFalling(Player *player);
+  void hitGround(Player *player);
 private:
+};
 
+class SecondAttack final : public PlayerState {
+public:
+  SecondAttack(Player *player);
+  void update(Player *player, float dt);
+  void handleEvents(Player *player, const sf::Event &event);
+  void hook(Player *player);
+  void attacked(Player *player);
+  void startFalling(Player *player);
+  void hitGround(Player *player);
+private:
+};
+
+class ThirdAttack final : public PlayerState {
+public:
+  ThirdAttack(Player *player);
+  void update(Player *player, float dt);
+  void handleEvents(Player *player, const sf::Event &event);
+  void hook(Player *player);
+  void attacked(Player *player);
+  void startFalling(Player *player);
+  void hitGround(Player *player);
+private:
 };
 
 #endif

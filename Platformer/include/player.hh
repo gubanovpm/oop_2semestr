@@ -31,6 +31,9 @@ public:
   friend class Sliding;
   friend class Hooked;
   friend class Sitting;
+  friend class FisrtAttack;
+  friend class SecondAttack;
+  friend class ThirdAttack;
 
 private:
   sf::Vector2f mPosition{0, 0};
