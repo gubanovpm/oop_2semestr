@@ -23,7 +23,6 @@ public:
 
   ~Player();
 
-  // friends? really? ok
   friend class PlayerState;
   friend class Idle;
   friend class Running;
